@@ -148,10 +148,10 @@ class Calc extends Component {
           </div>
           <ul className="collapsible" data-collapsible="accordion">
           <li>
-            <div className="collapsible-header">Current Marginal Tax Rate</div>
-            <div id='cmtr-helper' ref='cmtr-helper' className="collapsible-body white">
+            <div ref='cmtr-helper' className="collapsible-header active">Current Marginal Tax Rate</div>
+            <div id='cmtr-helper' className="collapsible-body white">
               <span>The current marginal tax rate is the percentage you will be taxed in the last dollar of income earned in a given tax year.
-              <br/><br/>Below is a combined federal & provincial tax schdule. Please click on a tax rate that matches your net income.
+              <br/><br/>Below is a combined federal & provincial tax schdule for British Columbia.<br/>Please click on a tax rate that matches your net income.
               </span>
               {taxTable}
             </div>
@@ -160,7 +160,7 @@ class Calc extends Component {
             <div ref='artrHelper' className="collapsible-header">Average Tax Rate in Retirement</div>
             <div id='artr-helper'  className="collapsible-body white">
               <span>The tax rate at which you expect to be at throughout your retirement, based on all sources of income (pension, investments, rents, etc...)
-              <br/><br/><strong>Please enter expected average tax rate you will pay in retirement. </strong><br></br>
+              <br/><br/>Please enter expected average tax rate you will pay in retirement.<br/>
               </span>
               <a className="waves-effect waves-light btn" onClick={this.artrClick}>Next</a>
             </div>
@@ -168,7 +168,7 @@ class Calc extends Component {
           <li>
             <div ref='depositedHelper' className="collapsible-header">Amount Deposited</div>
             <div className="collapsible-body white">
-              <span>The amount you are depositing for this partiuclar investment. <br></br>Please enter the deposit amount you wish to invest</span>
+              <span>The amount you are depositing for this partiuclar investment. <br></br>Please enter the deposit amount you wish to invest.</span>
               <a className="waves-effect waves-light btn" onClick={this.depositedClick}>Next</a>
             </div>
           </li>
