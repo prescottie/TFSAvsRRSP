@@ -1,4 +1,4 @@
-#TFSA/RRSP Comparison Calculator
+# TFSA/RRSP Comparison Calculator
 
 This calculator will be able to determine which type of RSP will help you save more over a period of time, given your marginal tax rate, average tax rate in retirement, the amount being saved, the rate of return expected and the expected rate of inflation.
 
