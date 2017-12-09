@@ -4,7 +4,8 @@ This calculator will be able to determine which type of RSP will help you save m
 
 
 ## Get Started
- 1. Download the neccessary dependencies by running `npm i ` from the project directory 
- 2. Run `npm start` or `yarn start` from your terminal to get the project running locally
- 3. Open your browser to `http://localhost:3000/` and start calculating.
+  1. Clone or fork this repository on to your local machine.
+  2. Download the neccessary dependencies by running `npm i ` from the project directory.
+  3. Run `npm start` or `yarn start` from your terminal to get the project running locally.
+  4. Open your browser to `http://localhost:3000/` and start calculating.
 
