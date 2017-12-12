@@ -9,10 +9,35 @@ class Results extends Component {
     table[0].classList.add('hidden');
   }
 
+  betterInvestment(tfsa, rrsp) {
+   if (rrsp.netWithdrawal > tfsa.netWithdrawal) {
+    return (
+      <div>
+        <h4>TFSA</h4>
+        <blockquote>Depositing ${tfsa.deposited} now, into a TFSA for {tfsa.term} years will grow to a ater-tax value of ${tfsa.netWithdrawal}.</blockquote>
+        <h4>RRSP</h4>
+        <blockquote className='better-investment'>A ${rrsp.deposited} investment into an RRSP, results in a ${rrsp.taxReturn} tax-return and total investment of ${rrsp.netContribution} and grow over {rrsp.term} years to ${rrsp.netWithdrawal}.</blockquote>
+      </div>
+    )
+   } else if (tfsa.netWithdrawal > rrsp.netWithdrawal) {
+    return (
+      <div>
+        <h4>TFSA</h4>
+        <blockquote className='better-investment'>Depositing ${tfsa.deposited} now, into a TFSA for {tfsa.term} years will grow to a ater-tax value of ${tfsa.netWithdrawal}.</blockquote>
+        <h4>RRSP</h4>
+        <blockquote>A ${rrsp.deposited} investment into an RRSP, results in a ${rrsp.taxReturn} tax-return and total investment of ${rrsp.netContribution} and grow over {rrsp.term} years to ${rrsp.netWithdrawal}.</blockquote>
+      </div>
+    )
+   }
+
+  }
+
   render() {
     const {tfsa, rrsp} = this.props;
+
     return (
       <div className='results-table col s7 offset-s1 hidden'>
+        {this.betterInvestment(tfsa, rrsp)}
         <table className="highlight">
           <thead>
             <tr>
@@ -24,17 +49,7 @@ class Results extends Component {
 
           <tbody>
             <tr>
-              <td>Pre-tax Amount Deposited</td>
-              <td>{`$${tfsa.deposited}`}</td>
-              <td>{`$${rrsp.deposited}`}</td>
-            </tr>
-            <tr>
-              <td>Amount taxed</td>
-              <td>{`$${tfsa.tax}`}</td>
-              <td>{rrsp.tax}</td>
-            </tr>
-            <tr>
-              <td>Net Contribution</td>
+              <td>After-tax Deposited</td>
               <td>{`$${tfsa.netContribution}`}</td>
               <td>{`$${rrsp.netContribution}`}</td>
             </tr>
@@ -44,8 +59,8 @@ class Results extends Component {
               <td>{`$${rrsp.futureValue}`}</td>
             </tr>
             <tr>
-              <td>Amount Taxed on Withdrawal</td>
-              <td>{tfsa.withdrawalTax}</td>
+              <td>Future Tax</td>
+              <td>{`$${tfsa.withdrawalTax}`}</td>
               <td>{`$${rrsp.withdrawalTax}`}</td>
             </tr>
             <tr className='bold'>
@@ -55,7 +70,7 @@ class Results extends Component {
             </tr>
           </tbody>
         </table>
-        <a className="waves-effect waves-light btn" onClick={this.startOver}><i class="material-icons right">replay</i>Start Over</a>
+        <a className="waves-effect waves-light btn" onClick={this.startOver}><i className="material-icons right">replay</i>Start Over</a>
       </div>
     );
   }

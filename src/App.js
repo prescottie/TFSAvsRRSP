@@ -17,31 +17,33 @@ class App extends Component {
   }
 
 
-  calcTFSA = (cmtr, deposited, years, realReturnRate) => {
-    const tax = (cmtr/100) * deposited;
-    const netContribution = deposited - tax;
-    const futureValue = this.calcFV(netContribution, realReturnRate, years);
+  calcTFSA = (deposited, years, realReturnRate) => {
+    const futureValue = this.calcFV(deposited, realReturnRate, years);
     this.setState({
       tfsa: {
         deposited: Number(deposited).toFixed(2),
-        tax: Number(tax).toFixed(2),
-        netContribution: Number(netContribution).toFixed(2),
+        term: years,
+        taxReturn: (0.00).toFixed(2),
+        netContribution: Number(deposited).toFixed(2),
         futureValue: Number(futureValue).toFixed(2),
-        withdrawalTax: 'N/A',
+        withdrawalTax: (0.00).toFixed(2),
         netWithdrawal: Number(futureValue).toFixed(2)
       }
     })
   }
 
-  calcRRSP = (artr, deposited, years, realReturnRate) => {
-    const futureValue = this.calcFV(deposited, realReturnRate, years);
+  calcRRSP = (cmtr, artr, deposited, years, realReturnRate) => {
+    const withTaxReturn = deposited/(1 - (cmtr/100));
+    console.log(withTaxReturn);
+    const futureValue = this.calcFV(withTaxReturn, realReturnRate, years);
     const withdrawalTax = (artr/100) * futureValue;
     const netWithdrawal = futureValue - withdrawalTax;
     this.setState({
       rrsp: {
         deposited: Number(deposited).toFixed(2),
-        tax: 'N/A',
-        netContribution: Number(deposited).toFixed(2),
+        term: years,
+        taxReturn: Number(withTaxReturn - deposited).toFixed(2),
+        netContribution: Number(withTaxReturn).toFixed(2),
         futureValue: Number(futureValue).toFixed(2),
         withdrawalTax: Number(withdrawalTax).toFixed(2),
         netWithdrawal: Number(netWithdrawal).toFixed(2),

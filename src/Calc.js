@@ -26,10 +26,9 @@ class Calc extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const {cmtr, artr, deposited, years, returnRate, inflation } = this.state;
-    const realReturnRate = ((1 + (returnRate/100)) / (1 + (inflation/100)) - 1); 
-    console.log( "Real: ", realReturnRate);
-    this.props.calcTFSA(cmtr, deposited, years, realReturnRate);
-    this.props.calcRRSP(artr, deposited, years, realReturnRate);
+    const realReturnRate = ((1 + (returnRate/100)) / (1 + (inflation/100)) - 1);
+    this.props.calcTFSA(deposited, years, realReturnRate);
+    this.props.calcRRSP(cmtr, artr, deposited, years, realReturnRate);
 
     const card = document.getElementsByClassName("card");
     card[0].classList.add('hidden');
@@ -168,7 +167,7 @@ class Calc extends Component {
           <li>
             <div ref='depositedHelper' className="collapsible-header">Amount Deposited</div>
             <div className="collapsible-body white">
-              <span>The amount you are depositing for this partiuclar investment. <br></br>Please enter the deposit amount you wish to invest.</span>
+              <span>The amount in you are depositing for this partiuclar investment. <br></br>Please enter the deposit amount you wish to invest.</span>
               <a className="waves-effect waves-light btn" onClick={this.depositedClick}>Next</a>
             </div>
           </li>
@@ -189,7 +188,7 @@ class Calc extends Component {
           <li>
             <div ref='inflationHelper' className="collapsible-header">Rate of Inflation</div>
             <div className="collapsible-body white">
-              <span>The rate of inflation is the percentage at which there is a general increase in prices and fall in the purchasing value of money, on a yearly basis. The averate rate of inflation over the last decade has been <span class="new badge" data-badge-caption="1.58%" onClick={this.inflationClick}></span>.<br/>Please enter the rate of inflation expected during the period of investment.</span>
+              <span>The rate of inflation is the percentage at which there is a general increase in prices and fall in the purchasing value of money, on a yearly basis. The averate rate of inflation over the last decade has been <span className="new badge" data-badge-caption="1.58%" onClick={this.inflationClick}></span>.<br/>Please enter the rate of inflation expected during the period of investment.</span>
             </div>
           </li>
         </ul>
